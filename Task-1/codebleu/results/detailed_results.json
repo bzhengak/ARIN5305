@@ -1,0 +1,32 @@
+[
+  {
+    "problem": "basic-calculator",
+    "correct_vs_llm": 0.34433188324138797,
+    "correct_vs_faulty": 0.6883165268305309,
+    "score_difference": -0.34398464358914294
+  },
+  {
+    "problem": "count-the-number-of-special-characters-ii",
+    "correct_vs_llm": 0.2681045901649379,
+    "correct_vs_faulty": 0.6694623426836667,
+    "score_difference": -0.4013577525187288
+  },
+  {
+    "problem": "minimum-cost-good-caption",
+    "correct_vs_llm": 0.4630145215032907,
+    "correct_vs_faulty": 0.688922927433366,
+    "score_difference": -0.22590840593007533
+  },
+  {
+    "problem": "robot-collisions",
+    "correct_vs_llm": 0.3601172558080623,
+    "correct_vs_faulty": 0.6880050573840978,
+    "score_difference": -0.3278878015760355
+  },
+  {
+    "problem": "sum-of-largest-prime-substrings",
+    "correct_vs_llm": 0.20663173307163002,
+    "correct_vs_faulty": 0.6439821553415287,
+    "score_difference": -0.4373504222698987
+  }
+]

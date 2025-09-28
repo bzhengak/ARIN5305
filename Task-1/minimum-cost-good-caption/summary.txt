@@ -1,0 +1,65 @@
+Class Structure
+There are two classes:
+Solution – contains all the logic for computing the “minimum cost good caption.”
+State – a simple container class with three fields:
+len: the length of a chosen block of characters,
+ch: the character chosen for that block,
+count: the accumulated cost of converting the block to that character.
+(All fields default to 0.)
+Method: minCostGoodCaption(String caption)
+This is the main method:
+If the input string has fewer than 3 characters, immediately return an empty string.
+Otherwise:
+Convert the string into a character array arr.
+Create an array dp of State objects, the same length as arr. This is used for dynamic programming (memoization).
+Call the recursive helper go(dp, arr, 0) to compute the best overall solution from the beginning of the string. Store that result in state.
+Create a result character array res, also the same length as arr.
+Fill the result array:
+Start at index ix = 0.
+While ix is less than the length of the array:
+Repeat state.len times: assign state.ch into res[ix] and increment ix.
+After finishing a block, if ix < arr.length - 1, update state = dp[ix] so that the next block continues where the previous left off.
+Return the new string built from res.
+Method: go(State[] dp, char[] arr, int ix)
+This recursive method decides the optimal way to partition the string into blocks of length 3, 4, or 5.
+Base cases:
+If ix == arr.length, return a new default State (terminal end of recursion).
+If ix > arr.length - 3, return null (not enough space left for a valid block).
+Memoization: If dp[ix] already has a value, return it.
+Otherwise, compute as follows:
+Try making a block of length 3:
+Compute the cheapest such block using min(arr, ix, 3).
+Recursively compute the result for the rest of the string starting at ix + 3.
+If recursion succeeds, add the downstream cost to the current block’s cost; otherwise, discard the result (res = null).
+If there’s room, try a block of length 4:
+Compute the cheapest block of length 4.
+Recursively compute the result for ix + 4.
+If valid, add costs and compare with the previous result using less. Keep the better one.
+If there’s room, try a block of length 5 (same process as for length 4).
+Store the best result into dp[ix] and return it.
+Method: less(State[] dp, State f, State s, int ix)
+This method compares two candidate states to decide if f is better than s.
+If s is null, or if f.count is smaller than s.count, return true.
+If f.count is larger than s.count, return false.
+If the costs are equal:
+Compare the resulting captions lexicographically.
+Do this by simulating the blocks step by step:
+Use counters i and j to track how many characters of the current blocks have been consumed.
+While the current characters (f.ch and s.ch) are equal:
+If one block runs out earlier, advance the index ix, move to the next block using dp[ix], and reset counters appropriately.
+If both blocks finish at the same time, stop.
+Finally, return whether f.ch is lexicographically smaller than s.ch.
+Method: min(char[] arr, int ix, int len)
+This method computes the cheapest way to replace a block of length len starting at position ix with a single repeated character.
+Create a new State object res.
+Initialize res.count to a very large number (1,000,000), and res.len to len.
+For each candidate character from 'a' to 'z':
+Calculate the cost of converting all characters in arr[ix ... ix + len - 1] into this character (sum of absolute differences in ASCII values).
+If this cost is smaller than the current res.count, update res.ch to this character and res.count to the cost.
+Return res.
+Class: State
+A simple container with three fields:
+len: length of the block, default to 0.
+ch: character chosen for the block, default to 0.
+count: cost of making the block, default to 0.
+It has no methods and all fields are initialized to zero by default.

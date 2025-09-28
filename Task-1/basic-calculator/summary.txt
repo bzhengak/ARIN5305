@@ -1,0 +1,1 @@
+Calculates arithmetic expression with +, -, parentheses using stack for precedence.

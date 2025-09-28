@@ -1,0 +1,1 @@
+Sort robot indices by positions, utilize stack for collision logic, return surviving healths.
