@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """
-修正版CodeBLEU相似性计算工具
 Task 1.2: Code Similarity Measure
-解决CodeBLEU未定义错误，提供完整的代码相似度计算
 """
 
 import os
